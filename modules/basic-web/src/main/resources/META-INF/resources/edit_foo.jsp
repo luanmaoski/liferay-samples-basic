@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %><%--
 /**
  * Copyright 2000-present Liferay, Inc.
  *
@@ -16,7 +16,7 @@
  */
 --%>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="init.jsp" %>
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
@@ -30,7 +30,9 @@ if (fooId > 0) {
 }
 %>
 
-<aui:form action="<%= renderResponse.createActionURL() %>" method="post" name="fm">
+<portlet:actionURL name='${"addFoo"}' var="actionURL"/>
+
+<aui:form action="${actionURL}" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= foo == null ? Constants.ADD : Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 	<aui:input name="fooId" type="hidden" value="<%= fooId %>" />
